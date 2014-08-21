@@ -59,6 +59,9 @@ $(document).ready ->
         else
           nthSection -= 1
           affixHeader($sections.eq(nthSection))
+      else
+        # prevent `slippage` when scrolling too fast
+        $fakeHeader.css("-webkit-transform", "translate3d(0, 0, 0)")
 
   affixHeader = ($section) ->
     if $fakeHeader
