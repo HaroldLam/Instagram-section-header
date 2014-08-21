@@ -40,7 +40,7 @@ body div {
   background: yellow;
 }
 .super-container .header {
-  height: 20px;
+  height: 40px;
   width: 100%;
   z-index: 15;
   background: green;
