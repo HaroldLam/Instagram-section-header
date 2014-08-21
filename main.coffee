@@ -6,6 +6,8 @@ $(document).ready ->
   # cache
   $sections = $(".section")
   $parent = $sections.parent()
+  $superContainer = $(".super-container")
+  $fakeHeader = null
 
 
 
@@ -35,12 +37,19 @@ $(document).ready ->
     if nthSection is null
       if this.y < sectionTops[0]
         nthSection = 0
+        fixHeader($sections.eq(nthSection))
     else
       if this.y < sectionTops[nthSection + 1]
         nthSection += 1
+        fixHeader($sections.eq(nthSection))
       else if this.y > sectionTops[nthSection]
         nthSection -= 1
-    console.log this.y
-    console.log sectionTops
-    console.log nthSection
+        fixHeader($sections.eq(nthSection))
+
+  fixHeader = ($section) ->
+    $fakeHeader = $section
+      .find(".header")
+      .clone()
+      .addClass("attached")
+      .appendTo($superContainer)
 

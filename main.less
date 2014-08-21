@@ -31,20 +31,22 @@ html, body {
 		}
 	}
 	.profile-container {
-		z-index: 6;
+		z-index: 15;
 		position: relative;
 		top: 200px;
 		background: yellow;
 		.section {
-			.header {
-				&.attached {
-					position: fixed;
-					top: 0;
-				}
-				height: 20px;
-				background: green;
-				color: white;
-			}
 		}
+	}
+	.header {
+		&.attached {
+			position: fixed;
+			top: 0;
+		}
+		height: 20px;
+		width: 100%;
+		z-index: 15;
+		background: green;
+		color: white;
 	}
 }
