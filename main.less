@@ -12,6 +12,7 @@ html, body {
 	height: 100%;
 	background: #666666;
 	position: relative;
+	overflow: hidden;
 	.top-bar {
 		height: 50px;
 		position: fixed;
@@ -31,8 +32,15 @@ html, body {
 	}
 	.profile-container {
 		z-index: 6;
-		position: absolute;
+		position: relative;
 		top: 200px;
 		background: yellow;
+		.section {
+			.header {
+				height: 20px;
+				background: green;
+				color: white;
+			}
+		}
 	}
 }

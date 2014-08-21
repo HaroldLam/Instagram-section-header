@@ -16,6 +16,7 @@ body div {
   height: 100%;
   background: #666666;
   position: relative;
+  overflow: hidden;
 }
 .super-container .top-bar {
   height: 50px;
@@ -36,7 +37,12 @@ body div {
 }
 .super-container .profile-container {
   z-index: 6;
-  position: absolute;
+  position: relative;
   top: 200px;
   background: yellow;
+}
+.super-container .profile-container .section .header {
+  height: 20px;
+  background: green;
+  color: white;
 }
