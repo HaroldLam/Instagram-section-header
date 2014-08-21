@@ -2,14 +2,19 @@ $(document).ready ->
   $(document).on "touchmove", (e) ->
     e.preventDefault()
 
-  sectionTops = null
-  distToTops = $(".profile-container").offset().top
-  nthSection = 0
-  lastScrollPos = 0
 
   # cache
   $sections = $(".section")
   $parent = $sections.parent()
+
+
+
+  distToTops = $(".profile-container").offset().top
+  nthSection = null
+  lastScrollPos = 0
+
+
+  sectionTops =  (- $(section).offset().top for section in $sections)
 
   mainScroll = new IScroll(".super-container", {
     indicators: [{
@@ -23,17 +28,19 @@ $(document).ready ->
     mouseWheel: true
   })
 
-  mainScroll.on "scrollStart", ->
-    sectionTops = (
-      - ($(section).offset().top - $parent.offset().top - distToTops) for section in $sections
-    )
-
   mainScroll.on "scrollEnd", ->
     return
 
   mainScroll.on "scroll", ->
-    if this.y < sectionTops[nthSection + 1]
-      nthSection += 1
-    else if this.y > sectionTops[nthSection - 1]
-      nthSection -= 1
+    if nthSection is null
+      if this.y < sectionTops[0]
+        nthSection = 0
+    else
+      if this.y < sectionTops[nthSection + 1]
+        nthSection += 1
+      else if this.y > sectionTops[nthSection]
+        nthSection -= 1
+    console.log this.y
+    console.log sectionTops
+    console.log nthSection
 

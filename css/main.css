@@ -46,3 +46,7 @@ body div {
   background: green;
   color: white;
 }
+.super-container .profile-container .section .header.attached {
+  position: fixed;
+  top: 0;
+}
