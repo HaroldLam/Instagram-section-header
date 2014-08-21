@@ -37,19 +37,27 @@ $(document).ready ->
     if nthSection is null
       if this.y < sectionTops[0]
         nthSection = 0
-        fixHeader($sections.eq(nthSection))
+        affixHeader($sections.eq(nthSection))
     else
       if this.y < sectionTops[nthSection + 1]
         nthSection += 1
-        fixHeader($sections.eq(nthSection))
+        affixHeader($sections.eq(nthSection))
       else if this.y > sectionTops[nthSection]
-        nthSection -= 1
-        fixHeader($sections.eq(nthSection))
+        if nthSection is 0
+          if $fakeHeader
+            $fakeHeader.remove()
+            $fakeHeader = null
+            nthSection = null
+        else
+          nthSection -= 1
+          affixHeader($sections.eq(nthSection))
 
-  fixHeader = ($section) ->
+  affixHeader = ($section) ->
+    if $fakeHeader
+      $fakeHeader.remove()
     $fakeHeader = $section
       .find(".header")
       .clone()
-      .addClass("attached")
+      .addClass("affixed")
       .appendTo($superContainer)
 

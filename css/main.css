@@ -46,7 +46,7 @@ body div {
   background: green;
   color: white;
 }
-.super-container .header.attached {
+.super-container .header.affixed {
   position: fixed;
   top: 0;
 }
