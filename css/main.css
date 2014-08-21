@@ -18,7 +18,7 @@ body div {
   position: relative;
   overflow: hidden;
 }
-.super-container .top-bar {
+.super-container .topbar {
   height: 50px;
   position: fixed;
   top: 0;
