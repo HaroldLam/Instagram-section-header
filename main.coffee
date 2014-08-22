@@ -8,6 +8,8 @@ $(document).ready ->
   $parent = $sections.parent()
   $superContainer = $(".super-container")
   $fakeHeader = null
+  $firstHeaderImg = $sections.eq(0).find("img")
+  $parallaxBgImg = $(".parallax-bg img")
 
 
 
@@ -18,6 +20,9 @@ $(document).ready ->
 
   sectionTops =  (- $(section).offset().top for section in $sections)
   sectionHeights = ($(section).find(".header").height() for section in $sections)
+
+  # page setup
+  $firstHeaderImg.css("-webkit-transform", "translate3d(0, -#{distToTops}px, 0)")
 
   mainScroll = new IScroll(".super-container", {
     indicators: [{
@@ -35,14 +40,14 @@ $(document).ready ->
     return
 
   mainScroll.on "scroll", ->
-    # console.log sectionHeights
-    # console.log this.y
-    # console.log sectionTops[nthSection + 1] + sectionHeights[nthSection + 1]
-    # console.log "===================="
     if nthSection is null
       if this.y < sectionTops[0]
         nthSection = 0
         affixHeader($sections.eq(nthSection))
+      else
+        # blurry header parallax
+        displacement = this.y * 0.2 - this.y - 200
+        $firstHeaderImg.css("-webkit-transform", "translate3d(0, #{displacement}px, 0)")
     else
       if this.y < sectionTops[nthSection + 1]
         nthSection += 1
